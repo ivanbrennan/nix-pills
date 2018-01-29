@@ -12,5 +12,6 @@ let
     hello = callPackage ./hello.nix { };
     graphviz = callPackage ./graphviz.nix { };
     graphvizCore = callPackage ./graphviz.nix { gdSupport = false; };
+    jq = callPackage ./jq.nix { };
   };
 in pkgs
