@@ -4,4 +4,5 @@ let
 in mkDerivation {
   name = "graphviz";
   src = ./graphviz.tar.gz;
+  buildInputs = wiht pkgs; [ gd fontconfig libjpeg bzip2 ];
 }
