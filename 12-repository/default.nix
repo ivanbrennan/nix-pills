@@ -9,11 +9,12 @@ let
         args = ((argsFrom allPkgs) // (argsFrom overrides));
     in
       makeOverridable f args;
-  pkgs = with nixpkgs; {
+  pkgs = with nixpkgs; rec {
     mkDerivation = import ./autotools.nix nixpkgs;
     hello = callPackage ./hello.nix { };
     graphviz = callPackage ./graphviz.nix { };
     graphvizCore = callPackage ./graphviz.nix { gdSupport = false; };
     jq = callPackage ./jq.nix { };
+    jqOni = jq.override { withOniguruma = true; };
   };
 in pkgs

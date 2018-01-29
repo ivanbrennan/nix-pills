@@ -23,7 +23,13 @@ unpackPhase() {
 }
 
 configurePhase() {
-  ./configure --prefix=$out
+  flags="--prefix=$out"
+
+  for e in $extraConfigureFlags; do
+    flags="$flags $e"
+  done
+
+  ./configure $flags
 }
 
 buildPhase() {
