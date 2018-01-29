@@ -1,5 +1,5 @@
-pkgs: attrs:
-  with pkgs;
+nixpkgs: attrs:
+  with nixpkgs;
   let defaultAttrs = {
     builder = "${bash}/bin/bash";
     args = [ ./builder.sh ];
