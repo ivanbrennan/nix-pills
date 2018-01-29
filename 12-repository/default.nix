@@ -16,5 +16,18 @@ let
     graphvizCore = callPackage ./graphviz.nix { gdSupport = false; };
     jq = callPackage ./jq.nix { };
     jqOni = jq.override { withOniguruma = true; };
+
+    # nix-build will build a derivation
+    aDerivation = hello;
+
+    # nix-build will call a function and build the returned derivation
+    aFunction = { foo ? "foo" }: hello;
+
+    # Build hello: nix-build -A namedPkg
+    # Build jq:    nix-build -A namedPkg --argstr name jq
+    namedPkg = { name ? "hello" }: pkgs."${name}";
+
+    # nix-build will not call multiple functions
+    aBroken = { foo ? "foo" }: { bar ? "bar" }: hello;
   };
 in pkgs
